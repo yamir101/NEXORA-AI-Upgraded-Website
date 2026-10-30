@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="NEXORA AI - AI solutions, business automation, chatbots and smart websites.">
+<title>NEXORA AI | Build Smarter. Grow Faster.</title>
+<style>
+:root {
+  --bg:#080d1b; --panel:#101a30; --blue:#4388ff;
+  --cyan:#35d6e8; --white:#f5f8ff; --muted:#a8b4ca;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Arial,sans-serif;background:var(--bg);color:var(--white);line-height:1.6}
+a{color:inherit;text-decoration:none}
+button,input,textarea,select{font:inherit}
+header{position:sticky;top:0;z-index:10;background:#080d1bf2;border-bottom:1px solid #26344f;padding:15px 6%}
+nav{display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap}
+.logo{font-size:24px;font-weight:900;letter-spacing:1px}
+.logo span{color:var(--cyan)}
+.navlinks{display:flex;gap:20px;align-items:center;flex-wrap:wrap}
+.navlinks a{color:var(--muted);font-size:14px}
+.navlinks a:hover{color:white}
+.btn{display:inline-block;background:linear-gradient(100deg,var(--blue),var(--cyan));color:#06101f;padding:12px 20px;border:0;border-radius:9px;font-weight:800;cursor:pointer}
+.btn:hover{filter:brightness(1.12)}
+.lang{background:#17243d;color:white;border:1px solid #40516f;padding:9px;border-radius:8px;cursor:pointer}
+section{padding:78px 7%;scroll-margin-top:80px}
+.hero{min-height:580px;display:grid;grid-template-columns:1.2fr .8fr;gap:35px;align-items:center;background:radial-gradient(ellipse at 85% 30%,#17366b 0,transparent 45%)}
+.eyebrow{color:var(--cyan);font-weight:bold;letter-spacing:2px;font-size:13px}
+h1{font-size:clamp(42px,6vw,68px);line-height:1.08;margin:18px 0}
+h1 span{color:var(--cyan)}
+.lead{font-size:18px;color:var(--muted);max-width:620px}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:28px}
+.secondary{border:1px solid #536581;color:white;padding:12px 20px;border-radius:9px}
+.hero-card,.card,.formbox,.chatbox{background:linear-gradient(145deg,#14213a,#0e172a);border:1px solid #263c5d;border-radius:17px;padding:25px}
+.hero-card{box-shadow:0 20px 70px #0007}
+.hero-card h3{margin-bottom:15px}
+.flowline{border-left:2px solid var(--cyan);padding:5px 0 5px 20px;margin:12px 0;color:#dbe8ff}
+.flowline small{display:block;color:var(--muted)}
+.section-head{text-align:center;max-width:750px;margin:0 auto 38px}
+h2{font-size:clamp(30px,4vw,42px);margin-bottom:12px}
+.section-head p,.muted{color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card h3{margin:12px 0 8px}
+.card p{color:var(--muted);font-size:15px}
+.symbol{font-size:29px}
+.tag{display:inline-block;color:var(--cyan);background:#17354b;padding:5px 10px;border-radius:30px;font-size:12px;margin-bottom:10px}
+.price{font-size:30px;font-weight:900;margin:12px 0}
+.card ul{padding-left:20px;color:var(--muted);margin:12px 0 20px}
+.card li{margin:5px 0}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.step{background:#111d33;border:1px solid #2b405e;border-radius:12px;padding:20px}
+.step b{color:var(--cyan);font-size:24px}
+.formbox{max-width:720px;margin:auto}
+form{display:grid;gap:13px}
+input,textarea,select{width:100%;background:#091326;color:white;border:1px solid #344965;border-radius:8px;padding:13px}
+textarea{min-height:100px;resize:vertical}
+label{font-size:14px;color:#d8e3f5}
+.notice{font-size:12px;color:var(--muted)}
+footer{padding:35px 7%;border-top:1px solid #26344f;color:var(--muted);text-align:center}
+.chat-launch{position:fixed;bottom:20px;right:20px;z-index:20}
+.chat-launch button{border:0;border-radius:50px;background:var(--cyan);padding:15px 20px;font-weight:bold;cursor:pointer;box-shadow:0 8px 30px #0008}
+.chatbox{position:fixed;right:20px;bottom:85px;width:min(360px,calc(100vw - 30px));z-index:21;display:none;box-shadow:0 15px 60px #000a}
+.chatbox.open{display:block}
+.chat-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.chat-head button{background:none;border:0;color:white;font-size:22px;cursor:pointer}
+.chat-messages{height:240px;overflow:auto;background:#091326;padding:12px;border-radius:9px;margin-bottom:12px}
+.msg{padding:9px 11px;border-radius:10px;margin:7px 0;max-width:90%;font-size:14px}
+.bot{background:#203453}
+.user{background:#155a72;margin-left:auto}
+.chat-controls{display:flex;gap:7px}
+.chat-controls input{min-width:0}
+.chat-controls button{padding:0 13px}
+.chat-disclaimer{font-size:11px;color:var(--muted);margin-top:8px}
+@media(max-width:800px){
+ .hero{grid-template-columns:1fr;min-height:auto}
+ .grid{grid-template-columns:1fr 1fr}
+ .steps{grid-template-columns:1fr 1fr}
+}
+@media(max-width:520px){
+ header{padding:12px 4%}
+ .navlinks{gap:11px}
+ .navlinks a{font-size:12px}
+ section{padding:58px 5%}
+ .grid,.steps{grid-template-columns:1fr}
+ .logo{font-size:20px}
+}
+</style>
+</head>
+<body>
+<header>
+<nav>
+  <a class="logo" href="#">NEXORA <span>AI.</span></a>
+  <div class="navlinks">
+    <a href="#services" data-en="Services" data-hi="Services">Services</a>
+    <a href="#process" data-en="Process" data-hi="Process">Process</a>
+    <a href="#pricing" data-en="Pricing" data-hi="Pricing">Pricing</a>
+    <a href="#contact" data-en="Contact" data-hi="Sampark">Contact</a>
+    <button class="lang" id="langBtn" type="button">हिंदी</button>
+  </div>
+</nav>
+</header>
+
+<main>
+<section class="hero">
+ <div>
+  <div class="eyebrow" data-en="AI SOLUTIONS & AUTOMATION AGENCY" data-hi="AI SOLUTIONS AUR AUTOMATION AGENCY">AI SOLUTIONS & AUTOMATION AGENCY</div>
+  <h1 data-en-html="Build Smarter.<br><span>Grow Faster.</span>" data-hi-html="Smart Business.<br><span>Fast Growth.</span>">Build Smarter.<br><span>Grow Faster.</span></h1>
+  <p class="lead" data-en="We help businesses save time, improve customer experience and grow with smart websites, AI chatbots and automation." data-hi="Hum businesses ko smart websites, AI chatbots aur automation ke zariye time bachane aur growth mein madad karte hain.">We help businesses save time, improve customer experience and grow with smart websites, AI chatbots and automation.</p>
+  <div class="hero-actions">
+   <a class="btn" href="#contact" data-en="Get Free Consultation" data-hi="Free Consultation Lein">Get Free Consultation</a>
+   <a class="secondary" href="#demo" data-en="Try Chatbot Demo" data-hi="Chatbot Demo Dekhein">Try Chatbot Demo</a>
+  </div>
+ </div>
+ <div class="hero-card">
+  <span class="tag">AUTOMATION DEMO</span>
+  <h3 data-en="A smarter lead workflow" data-hi="Smart Lead Workflow">A smarter lead workflow</h3>
+  <div class="flowline">01 — Visitor visits website<small>Customer opens your website</small></div>
+  <div class="flowline">02 — Chatbot asks questions<small>Collects enquiry details with consent</small></div>
+  <div class="flowline">03 — Lead is qualified<small>Service and requirement identified</small></div>
+  <div class="flowline">04 — Team follows up<small>Human reviews and contacts the lead</small></div>
+  <p class="notice">Illustrative workflow demo. External integrations require setup.</p>
+ </div>
+</section>
+
+<section id="services">
+ <div class="section-head">
+  <div class="eyebrow">WHAT WE DO</div>
+  <h2 data-en="Solutions for modern businesses" data-hi="Modern businesses ke liye solutions">Solutions for modern businesses</h2>
+  <p data-en="Practical digital services designed around your business needs." data-hi="Aapke business ki zaroorat ke hisaab se practical digital services.">Practical digital services designed around your business needs.</p>
+ </div>
+ <div class="grid">
+  <article class="card"><div class="symbol">🌐</div><h3>Business Websites</h3><p>Professional, responsive websites that explain your services and help customers contact you.</p></article>
+  <article class="card"><div class="symbol">🤖</div><h3>AI Chatbots</h3><p>Chat experiences that answer common questions and collect customer enquiries.</p></article>
+  <article class="card"><div class="symbol">⚙️</div><h3>Business Automation</h3><p>Connect repetitive business tasks and reduce manual work using suitable tools.</p></article>
+  <article class="card"><div class="symbol">📩</div><h3>Lead Generation</h3><p>Build enquiry flows and organise prospects for timely human follow-up.</p></article>
+  <article class="card"><div class="symbol">📊</div><h3>Workflow Systems</h3><p>Plan and implement practical processes for enquiries, records and notifications.</p></article>
+  <article class="card"><div class="symbol">🛠️</div><h3>Digital Support</h3><p>Website updates, landing pages and improvements as your business grows.</p></article>
+ </div>
+</section>
+
+<section id="demo">
+ <div class="section-head">
+  <div class="eyebrow">INTERACTIVE DEMO</div>
+  <h2>Try the NEXORA chatbot</h2>
+  <p>This is a scripted sample conversation to demonstrate a chatbot flow, not a live AI service.</p>
+ </div>
+ <div class="formbox" style="text-align:center">
+  <p class="muted">Click the chat button at the bottom-right corner and ask about our services or pricing.</p>
+  <button class="btn" onclick="toggleChat(true)" style="margin-top:18px">Open Chatbot Demo</button>
+ </div>
+</section>
+
+<section id="process">
+ <div class="section-head">
+  <div class="eyebrow">HOW IT WORKS</div>
+  <h2>From idea to implementation</h2>
+  <p>A clear process, with scope and costs agreed before work begins.</p>
+ </div>
+ <div class="steps">
+  <div class="step"><b>01</b><h3>Understand</h3><p class="muted">Discuss your business and requirements.</p></div>
+  <div class="step"><b>02</b><h3>Plan</h3><p class="muted">Agree deliverables, timeline and price.</p></div>
+  <div class="step"><b>03</b><h3>Build</h3><p class="muted">Develop and test the agreed solution.</p></div>
+  <div class="step"><b>04</b><h3>Launch</h3><p class="muted">Deliver and explain how to use it.</p></div>
+ </div>
+</section>
+
+<section id="pricing">
+ <div class="section-head">
+  <div class="eyebrow">TRANSPARENT STARTING PRICES</div>
+  <h2>Choose a starting point</h2>
+  <p>Indicative prices only. Final quotation depends on scope and requirements.</p>
+ </div>
+ <div class="grid">
+  <article class="card">
+   <span class="tag">STARTER</span><h3>Business Website</h3>
+   <div class="price">₹4,999+</div>
+   <ul><li>Basic business website</li><li>Mobile-friendly layout</li><li>Contact section</li><li>Basic enquiry handoff</li></ul>
+   <a class="btn" href="#contact" onclick="selectService('Business Website')">Enquire Now</a>
+  </article>
+  <article class="card">
+   <span class="tag">GROWTH</span><h3>Website + Chatbot</h3>
+   <div class="price">₹9,999+</div>
+   <ul><li>Website pages</li><li>Chatbot setup</li><li>Lead qualification flow</li><li>Testing and handover</li></ul>
+   <a class="btn" href="#contact" onclick="selectService('Website + Chatbot')">Enquire Now</a>
+  </article>
+  <article class="card">
+   <span class="tag">AUTOMATION</span><h3>Workflow Automation</h3>
+   <div class="price">₹14,999+</div>
+   <ul><li>Workflow planning</li><li>Lead routing setup</li><li>Supported app integration</li><li>Testing and handover</li></ul>
+   <a class="btn" href="#contact" onclick="selectService('Workflow Automation')">Enquire Now</a>
+  </article>
+ </div>
+ <p class="notice" style="text-align:center;margin-top:18px">Third-party subscriptions, API usage, hosting and domain charges are not included unless specifically agreed.</p>
+</section>
+
+<section id="contact">
+ <div class="section-head">
+  <div class="eyebrow">LET'S TALK</div>
+  <h2>Tell us about your business</h2>
+  <p>Share your requirements. We will review them and discuss the next step.</p>
+ </div>
+ <div class="formbox">
+  <form id="leadForm">
+   <label>Your name<input id="name" required placeholder="Enter your name"></label>
+   <label>Business name<input id="business" placeholder="Your business name"></label>
+   <label>WhatsApp number<input id="phone" required type="tel" placeholder="Your contact number"></label>
+   <label>What do you need?
+    <select id="service">
+     <option>Business Website</option>
+     <option>AI Chatbot</option>
+     <option>Workflow Automation</option>
+     <option>Lead Generation</option>
+     <option>Other</option>
+    </select>
+   </label>
+   <label>Tell us more<textarea id="requirement" placeholder="Briefly explain what you need"></textarea></label>
+   <label><input id="consent" type="checkbox" required style="width:auto"> I agree to share these details with NEXORA AI for this enquiry.</label>
+   <button class="btn" type="submit">Send Enquiry on WhatsApp</button>
+   <p class="notice">Your details will be placed in a WhatsApp message. Nothing is sent until you review and press Send in WhatsApp.</p>
+  </form>
+  <div style="margin-top:22px;text-align:center">
+   <p>WhatsApp: <a href="https://wa.me/916266149745" target="_blank" rel="noopener">+91 6266149745</a></p>
+   <p>Email: <a href="mailto:amir008hussain@gmail.com">amir008hussain@gmail.com</a></p>
+   <p>Founder: Aamir Hussain | Bhopal, Madhya Pradesh</p>
+  </div>
+ </div>
+</section>
+</main>
+
+<footer>
+ <div class="logo">NEXORA <span>AI.</span></div>
+ <p>Build Smarter. Grow Faster.</p>
+ <p>© <span id="year"></span> NEXORA AI. All rights reserved.</p>
+ <p class="notice">Service scope, delivery dates and pricing are confirmed individually before work starts.</p>
+</footer>
+
+<div class="chat-launch"><button onclick="toggleChat()">💬 Chat with us</button></div>
+<div class="chatbox" id="chatbox">
+ <div class="chat-head"><strong>NEXORA AI Demo</strong><button onclick="toggleChat(false)" aria-label="Close chat">×</button></div>
+ <div class="chat-messages" id="messages" aria-live="polite">
+  <div class="msg bot">Hello! Welcome to NEXORA AI. What are you looking for: a website, chatbot or automation?</div>
+ </div>
+ <div class="chat-controls">
+  <input id="chatInput" placeholder="Type your message..." aria-label="Chat message">
+  <button class="btn" onclick="sendChat()">Send</button>
+ </div>
+ <p class="chat-disclaimer">Demo mode: replies are predefined, not generated by a live AI model.</p>
+</div>
+
+<script>
+const WA_NUMBER = "916266149745";
+let language = "en";
+
+function toggleChat(force) {
+ const box = document.getElementById("chatbox");
+ if (typeof force === "boolean") box.classList.toggle("open", force);
+ else box.classList.toggle("open");
+ if (box.classList.contains("open")) document.getElementById("chatInput").focus();
+}
+function addMessage(text, who) {
+ const area = document.getElementById("messages");
+ const div = document.createElement("div");
+ div.className = "msg " + who;
+ div.textContent = text;
+ area.appendChild(div);
+ area.scrollTop = area.scrollHeight;
+}
+function sendChat() {
+ const input = document.getElementById("chatInput");
+ const message = input.value.trim();
+ if (!message) return;
+ addMessage(message, "user");
+ input.value = "";
+ const q = message.toLowerCase();
+ let reply = "Thanks for your message. Please tell us whether you need a website, chatbot or business automation. You can also send your requirement through our contact form.";
+ if (/price|cost|charge|kitna|rate/.test(q)) {
+  reply = "Our indicative starting prices are: Website ₹4,999+, Website + Chatbot ₹9,999+, Workflow Automation ₹14,999+. Final quote depends on scope.";
+ } else if (/website|site/.test(q)) {
+  reply = "We can help plan a responsive business website. Please use the enquiry form and select Business Website.";
+ } else if (/chatbot|chat bot/.test(q)) {
+  reply = "We can plan a chatbot for FAQs and lead qualification. A live AI chatbot needs a model/API and backend integration.";
+ } else if (/automat|workflow/.test(q)) {
+  reply = "We can map repetitive tasks and plan automation. Tell us which apps and tasks your business currently uses.";
+ } else if (/hello|hi|hey|namaste/.test(q)) {
+  reply = "Hello! Are you interested in a website, chatbot or automation for your business?";
+ }
+ setTimeout(() => addMessage(reply, "bot"), 350);
+}
+document.getElementById("chatInput").addEventListener("keydown", e => {
+ if (e.key === "Enter") sendChat();
+});
+function selectService(value) {
+ document.getElementById("service").value = value;
+}
+document.getElementById("leadForm").addEventListener("submit", function(e) {
+ e.preventDefault();
+ const name = document.getElementById("name").value.trim();
+ const business = document.getElementById("business").value.trim();
+ const phone = document.getElementById("phone").value.trim();
+ const service = document.getElementById("service").value;
+ const requirement = document.getElementById("requirement").value.trim();
+ const consent = document.getElementById("consent").checked;
+ if (!consent) return alert("Please provide consent before sending your enquiry.");
+ const digits = phone.replace(/\D/g, "");
+ if (digits.length < 10) return alert("Please enter a valid phone number.");
+ const message =
+  "Hello NEXORA AI, I would like to enquire about your services.\n\n" +
+  "Name: " + name + "\nBusiness: " + business +
+  "\nPhone: " + phone + "\nService: " + service +
+  "\nRequirement: " + requirement;
+ window.open("https://wa.me/" + WA_NUMBER + "?text=" + encodeURIComponent(message), "_blank");
+});
+document.getElementById("year").textContent = new Date().getFullYear();
+
+document.getElementById("langBtn").addEventListener("click", () => {
+ language = language === "en" ? "hi" : "en";
+ document.documentElement.lang = language;
+ document.querySelectorAll("[data-en]").forEach(el => {
+  el.textContent = el.dataset[language];
+ });
+ document.querySelectorAll("[data-en-html]").forEach(el => {
+  el.innerHTML = el.dataset[language + "Html"];
+ });
+ document.getElementById("langBtn").textContent = language === "en" ? "हिंदी" : "English";
+});
+</script>
+</body>
+</html>
